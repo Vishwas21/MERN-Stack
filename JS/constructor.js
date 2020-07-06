@@ -32,6 +32,13 @@
 // }
 
 //Example
+var moviesList = [
+    { name: "Die Hard", year: 1983, duration: 1.5 },
+    { name: "Die Hard 2", year: 1985, duration: 1.6 },
+    { name: "Die Hard 3", year: 1987, duration: 1.4 },
+    { name: "Armeggadon", year: 1983, duration: 1.7 },
+    { name: "Dr. Glass", year: 2020, duration: 1.65 }
+];
 function BWMovies(title, year, duration) {
     this.title = title;
     this.year = year;
@@ -83,10 +90,14 @@ BWMovies.prototype.vote = function (rating) {
     return;
 }
 
-var movie1 = new BWMovies("Movie1", 1958, 2.1);
+var movies = []
 
-movie1.modifyWatchStatus();
-movie1.vote(3.5);
-movie1.vote(4.2);
+// for (let i = 0; moviesList[i]; i++) {
+//     movies.push(new BWMovies(moviesList[i].name, moviesList[i].year, moviesList[i].duration));
+// }
+
+moviesList.forEach(element => {
+    movies.push(new BWMovies(element.name, element.year, element.duration));
+});
 
 console.log("Everything")
