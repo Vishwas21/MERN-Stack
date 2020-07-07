@@ -24,7 +24,7 @@
 //Automobiles Class ------------------------------------------------------------
 function Automobiles(name, brand, color, milage, value, gear) {
     this.name = name;
-    this.brand = brand
+    this.brand = brand;
     this.color = color;
     this.milage = milage;
     this.value = value;
@@ -41,25 +41,25 @@ Automobiles.prototype.accident = function () {
 //Automobiles Class ------------------------------------------------------------
 
 
-//Bike Class --------------------------------------------
+//Bikes Class --------------------------------------------
 function Bikes(name, brand, color, milage, value, gear, type, topSpeed) {
     Automobiles.call(this, name, brand, color, milage, value, gear);
-    this.type = type
-    this.topSpeed = topSpeed
+    this.type = type || "Cruiser";
+    this.topSpeed = topSpeed;
 }
-Bikes.prototype = Object.create(Automobiles.prototype)
+Bikes.prototype = Object.create(Automobiles.prototype);
 
 Bikes.prototype.race = function () {
     this.value = 0.8 * this.value;
 }
-//Bike Class --------------------------------------------
+//Bikes Class --------------------------------------------
 
 //Cars Class --------------------------------------------
 function Cars(name, brand, color, milage, value, gear, bodyType) {
     Automobiles.call(this, name, brand, color, milage, value, gear);
     this.bodyType = bodyType
 }
-Cars.prototype = Object.create(Automobiles.prototype)
+Cars.prototype = Object.create(Automobiles.prototype);
 
 Cars.prototype.drag = function () {
     this.value = 0.7 * this.value;
