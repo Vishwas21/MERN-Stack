@@ -1,10 +1,10 @@
 const jwt = require("jsonwebtoken");
 const config = require("config");
 
-module.exports = function (req, res, next) {
+module.exports = (req, res, next) => {
     const authToken = req.header("x-auth-token");
     if (!authToken) {
-        res.status(401).json({ message: "No tokens found!! :)" });
+        return res.status(401).json({ message: "No tokens found!! :)" });
     }
 
     try {
