@@ -15,7 +15,10 @@ router.post(
     "/",
     [
         check("name", "Name is required").not().isEmpty(),
-        check("email", "We are familiar with email syntax, are we?").isEmail(),
+        check(
+            "email",
+            "We are familiar with email syntax, aren't we?"
+        ).isEmail(),
         check(
             "pass",
             "Hey, lets enter a more secure passsword, 6 characters or more"
@@ -39,6 +42,7 @@ router.post(
                         "User with this email already exists. Please Check!",
                 });
             }
+
             // Generate a gravatar url
             const avatar = gravatar.url(email, {
                 s: "200",
