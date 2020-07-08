@@ -13,10 +13,12 @@ router.get(
         check("email", "We are familiar with email syntax, are we?").isEmail(),
         check(
             "pass",
-            "Hey, lets enter a more secure password, 6 characters or more"
+            "Hey, lets enter a more secure passsword, 6 characters or more"
         ).isLength({ min: 6 }),
     ],
-    (req, res) => res.send("User route")
+    async (req, res) => {
+        const error = validationResult(req);
+    }
 );
 
 // router.post("/", (req, res) => res.send("Posts route"));
