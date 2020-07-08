@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // @route GET api/auth
-// @desc  test route
+// @desc  get user details
 // @access  private route
 
 router.get("/", (req, res) => res.send("Auth route"));

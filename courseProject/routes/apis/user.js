@@ -86,7 +86,7 @@ router.post(
             return res.status(500).send("Server Error");
         }
 
-        res.send("Yep!! All Good! :)");
+        // res.send("Yep!! All Good! :)");
     }
 );
 
