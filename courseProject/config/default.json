@@ -1,3 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://admin:adminPassword@cluster0.nnrpp.mongodb.net/test?retryWrites=true&w=majority"
+    "mongoURI": "mongodb+srv://admin:adminPassword@cluster0.nnrpp.mongodb.net/test?retryWrites=true&w=majority",
+    "localMongoURI": "mongodb://127.0.0.1:27017/local_db"
 }

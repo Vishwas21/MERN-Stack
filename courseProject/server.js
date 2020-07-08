@@ -4,7 +4,7 @@ const connectDB = require("./config/db");
 const app = express();
 
 //Connect MongoDB
-// connectDB();
+connectDB();
 
 //Setup API Routes
 app.use("/api/auth", require("./routes/apis/auth"));
