@@ -4,6 +4,8 @@ const { check, validationResult } = require("express-validator");
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const gravatar = require("gravatar");
+const jwt = require("jsonwebtoken");
+const config = require("config");
 
 // @route POST api/user
 // @desc  test route
@@ -57,9 +59,28 @@ router.post(
             user.pass = await bcrypt.hash(user.pass, salt);
 
             // Create the User
-            user.save();
+            await user.save();
 
-            // Generate JWT token and send it back
+            // Generate JSON Web Token(JWT) and send it back
+            const payload = {
+                user: {
+                    id: user.id,
+                },
+            };
+
+            jwt.sign(
+                payload,
+                config.get("jwtToken"),
+                { expiresIn: 360000 },
+                (err, token) => {
+                    if (err) {
+                        return res
+                            .status(400)
+                            .send("Token could not be generated!!");
+                    }
+                    res.status(200).json({ token });
+                }
+            );
         } catch (err) {
             console.log("Server Error : ", err);
             return res.status(500).send("Server Error");
