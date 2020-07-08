@@ -2,17 +2,6 @@ const express = require("express");
 const db = require("./config/db");
 const mongoose = require("mongoose");
 
-const connectDB = async () => {
-    try {
-        await mongoose.connect(db, {
-            useNewUrlParser: true,
-        });
-        console.log("MongoDB Connected.....");
-    } catch (error) {
-        console.log(error);
-    }
-};
-
 const app = express();
 
 const PORT = process.env.PORT || 5000;
