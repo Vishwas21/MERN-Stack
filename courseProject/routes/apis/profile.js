@@ -71,7 +71,7 @@ router.post(
                     { new: true }
                 ).populate("user", ["name", "avatar"]);
 
-                return res.status(200).json(profile);
+                return res.status(200).json({ updatedProfile: profile });
             }
 
             // New Profile
@@ -79,12 +79,51 @@ router.post(
 
             profile.save();
 
-            return res.status(200).json(profile);
+            return res.status(200).json({ createdProfile: profile });
         } catch (err) {
             console.log("Server Error: ", err);
             return res.send(500).send("Server Error");
         }
     }
 );
+
+// @route GET api/profile/all
+// @desc  Fetch all profiles
+// @access  public route
+
+router.get("/all", async (req, res) => {
+    try {
+        const profile = await Profile.find().populate("user", [
+            "name",
+            "avatar",
+        ]);
+        return res.status(200).json(profile);
+    } catch (err) {
+        console.log("Server Error: ", err);
+        return res.status(500).send("Server Error");
+    }
+});
+
+// @route GET api/profile/user/:user_id
+// @desc  Fetch one profile based on user id
+// @access  public route
+
+router.get("/user/:user_id", async (req, res) => {
+    try {
+        const profile = await Profile.findOne({
+            user: req.params.user_id,
+        }).populate("user", ["name", "avatar"]);
+        if (!profile) {
+            return res.status(400).json({
+                message: `User ID: ${req.params.user_id}, not found!! :)`,
+            });
+        }
+
+        return res.status(200).json(profile);
+    } catch (err) {
+        console.log("Server Error: ", err);
+        return res.status(500).send("Server Error");
+    }
+});
 
 module.exports = router;
