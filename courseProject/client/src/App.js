@@ -69,7 +69,9 @@ class App extends Component {
                                 </Auth>
                             )}
                         />
-                        <Route exact path='/profile' component={Profile} />
+                        <Route exact path='/profile'>
+                            <Profile />
+                        </Route>
                     </Switch>
                 </Grid>
             </Router>
