@@ -2,7 +2,7 @@
 
 MERN Training
 
-### Info Links
+### `Info Links`
 
 -   https://github.com/akash-saxena150/nodeJSTraining
 -   https://reactjs.org
@@ -19,7 +19,7 @@ MERN Training
 -   https://formik.org/docs/overview
 -   http://passportjs.org
 
-### Requirements
+### `Requirements`
 
 -   NodeJS for backend
 -   Visual Studio Code for Coding
@@ -29,7 +29,7 @@ MERN Training
 -   Visual Studio Code Extension - es7/react/redux/react-native snippets
 -   Visual Studio Code Extension - Prettier
 
-### Commands
+### `Commands`
 
 -   npm init
 -   npm i express express-validator config bcryptjs gravatar jsonwebtoken mongoose request
@@ -50,7 +50,7 @@ MERN Training
 -   passport
 -   formik
 
-### Email
+### `Email`
 
 -   akash@getsetgo.fitness
 -   akash.saxena150@gmail.com
