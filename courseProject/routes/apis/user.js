@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const config = require("config");
 
 // @route POST api/user
-// @desc  test route
+// @desc  Create User
 // @access  public route
 
 router.post(
