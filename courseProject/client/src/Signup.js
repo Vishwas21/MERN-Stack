@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Grid, Button } from "@material-ui/core";
-import axios from "axios";
+import { callAPI, set } from "./services";
 
 class Signup extends Component {
     constructor() {
@@ -12,6 +12,8 @@ class Signup extends Component {
                 email: { val: "", err: false },
                 pass: { val: "", err: false },
             },
+            error: false,
+            errorMessage: "",
         };
     }
 
@@ -21,7 +23,7 @@ class Signup extends Component {
             email: { val: "", err: false },
             pass: { val: "", err: false },
         };
-        this.setState({ type, formFields });
+        this.setState({ type, formFields, error: false, errorMessage: "" });
     }
 
     // changeName(event) {
@@ -53,9 +55,35 @@ class Signup extends Component {
         this.setState({ formFields: tempObj });
     }
 
+    handleSignUp(data) {
+        console.log("Sign Up Successful!! Here is your Token : ", data);
+
+        // Store the token in Local Storage
+        set("auth", data.data.token);
+
+        // Redirect to the next page
+        this.props.history.push("dashboard");
+    }
+
+    handelError(err) {
+        this.setState({
+            error: true,
+            errorMessage: "Hey, We could not log you in!",
+        });
+    }
+
+    handleSignIn(data) {
+        console.log("Sign In Successful!! Here is your Token : ", data);
+
+        // Store the token in Local Storage
+        set("auth", data.data.token);
+
+        // Redirect to the next page
+        this.props.history.push("dashboard");
+    }
+
     formSubmit(event) {
         event.preventDefault();
-        console.log(this.state.formFields);
 
         let { formFields, type } = this.state;
         let tempObj = {};
@@ -64,28 +92,26 @@ class Signup extends Component {
 
         if (type === "signup") {
             tempObj.name = formFields.name.val;
-            axios
-                .post("http://localhost:5000/api/user", tempObj)
-                .then(responseData => {
-                    console.log(responseData);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+            callAPI(
+                "user",
+                "post",
+                this.handleSignUp.bind(this),
+                this.handelError.bind(this),
+                tempObj
+            );
         } else if (type === "signin") {
-            axios
-                .post("http://localhost:5000/api/auth", tempObj)
-                .then(responseData => {
-                    console.log(responseData);
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+            callAPI(
+                "auth",
+                "post",
+                this.handleSignIn.bind(this),
+                this.handelError.bind(this),
+                tempObj
+            );
         }
     }
 
     render() {
-        let { type, formFields } = this.state;
+        let { type, formFields, error, errorMessage } = this.state;
         return (
             <Grid
                 container
@@ -135,7 +161,11 @@ class Signup extends Component {
                         alignItems='center'
                         justify='center'
                         xs={5}
-                        style={{ background: "white", padding: "5vh" }}
+                        style={{
+                            background: "white",
+                            padding: "5vh",
+                            marginBottom: "40px",
+                        }}
                     >
                         <form
                             style={{ width: "100%", textAlign: "center" }}
@@ -212,7 +242,11 @@ class Signup extends Component {
                         alignItems='center'
                         justify='center'
                         xs={5}
-                        style={{ background: "white", padding: "5vh" }}
+                        style={{
+                            background: "white",
+                            padding: "5vh",
+                            marginBottom: "40px",
+                        }}
                     >
                         <form
                             style={{ width: "100%", textAlign: "center" }}
@@ -254,6 +288,31 @@ class Signup extends Component {
                                 </Button>
                             </div>
                         </form>
+                    </Grid>
+                )}
+                {error && (
+                    <Grid
+                        item
+                        container
+                        justify='space-between'
+                        alignItems='center'
+                        className='bigError'
+                    >
+                        <Grid item>{errorMessage}</Grid>
+                        <Grid item>
+                            <Button
+                                variant='outlined'
+                                color='primary'
+                                onClick={() => {
+                                    this.setState({
+                                        error: false,
+                                        errorMessage: "",
+                                    });
+                                }}
+                            >
+                                Close
+                            </Button>
+                        </Grid>
                     </Grid>
                 )}
             </Grid>

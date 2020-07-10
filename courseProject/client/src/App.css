@@ -62,3 +62,13 @@ a {
 .activeLink {
     color: red;
 }
+
+.bigError {
+    background: lightcoral;
+    border: 1px solid red;
+    border-radius: 5px;
+    color: #1b1b1b;
+    padding: 5px 10px;
+    margin: 10px;
+    width: 50% !important;
+}

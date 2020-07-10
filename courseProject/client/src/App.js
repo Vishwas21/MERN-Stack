@@ -11,6 +11,7 @@ import Signup from "./Signup";
 import Header from "./Header";
 import Dashboard from "./Dashboard";
 import Profile from "./Profile";
+import Auth from "./Auth";
 
 // Function Component -------------------------------------------------
 // function App() {
@@ -55,18 +56,20 @@ class App extends Component {
 
             <Router>
                 <Grid container direction='column'>
-                    <Header />
+                    <Header name='Vishwas' />
 
                     <Switch>
-                        <Route exact path='/'>
-                            <Signup />
-                        </Route>
-                        <Route exact path='/dashboard'>
-                            <Dashboard />
-                        </Route>
-                        <Route exact path='/profile'>
-                            <Profile />
-                        </Route>
+                        <Route exact path='/' component={Signup} />
+                        <Route
+                            exact
+                            path='/dashboard'
+                            render={() => (
+                                <Auth>
+                                    <Dashboard />
+                                </Auth>
+                            )}
+                        />
+                        <Route exact path='/profile' component={Profile} />
                     </Switch>
                 </Grid>
             </Router>
