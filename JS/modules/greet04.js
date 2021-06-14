@@ -11,5 +11,5 @@ let companion = "Shraddha";
 module.exports = {
     drive: drive,
     lazy,
-    companion: companion
-}
+    companion: companion,
+};

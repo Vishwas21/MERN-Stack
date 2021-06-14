@@ -60,24 +60,28 @@
 
 // console.log(result);
 
-function add(a, b) {
-    return a + b;
-}
+// function add(a, b) {
+//     return a + b;
+// }
 
-function sub(a, b) {
-    return a - b;
-}
+// function sub(a, b) {
+//     return a - b;
+// }
 
-function mul(a, b) {
-    return a * b;
-}
+// function mul(a, b) {
+//     return a * b;
+// }
 
-function calc(a, b, opFn) {
-    return function (c, opFn2) {
-        return opFn2(c, opFn(a, b));
-    };
-}
+// function calc(a, b, opFn) {
+//     return function (c, opFn2) {
+//         return opFn2(c, opFn(a, b));
+//     };
+// }
 
-var sum = calc(3, 10, mul);
+// var sum = calc(3, 10, mul);
 
-console.log(sum(10, sub));
+// console.log(sum(10, sub));
+
+const newFunctionName = strName => `My Name is ${strName}`;
+
+console.log(newFunctionName("Harshitha"));
